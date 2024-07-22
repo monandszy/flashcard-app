@@ -1,0 +1,16 @@
+networks:
+  observability:
+    external: true
+  data:
+    external: true
+services:
+  app-template:
+    image: project-base/app-template:0.1.0-rc
+    restart: unless-stopped
+    environment:
+      - "SPRING_PROFILES_ACTIVE=${profile}"
+    ports:
+      - "8000:8000"
+    networks:
+      - observability
+      - data
